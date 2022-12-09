@@ -34,12 +34,15 @@ library(rsconnect)
   
   shiny_server <- function(input, output) {
     
-    lalala <- reactive({co2_data %>%
-        filter(country == input$country | country == input$country2) %>%
-        filter(year >= input$slider[1], year <= input$slider[2])})
+    plot <- function(country, year) {
+      new_data <- co2_data %>%
+        filter(country %in% input$country)
+        filter(year %in% input$year)
+        return(new_data)
+    }
   
   output$graph <- renderPlotly({
-    ggplot(lalala()) +
+    ggplot(plot(input$country)) +
       geom_line(aes(x = year, y = co2_per_capita, color = country),
                position = "dodge") +
       labs(x = "Year", y = "CO2 Emissions per Capita (Tonnes per Person)")

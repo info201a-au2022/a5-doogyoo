@@ -32,8 +32,6 @@ chart_2 <- tabPanel(
     sidebarPanel(
       selectInput(inputId = "country", label = "First Country",
                   choices = unique$country, multiple = FALSE),
-      selectInput(inputId = "country2", label = "Second Country",
-                  choices = unique$country, multiple = FALSE), 
       sliderInput("slider", label = ("Year Range"), min = 1750,
                   max = 2021, value = c(1950, 2021)),
       ),
