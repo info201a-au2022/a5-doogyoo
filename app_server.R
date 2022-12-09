@@ -27,15 +27,12 @@ library(rsconnect)
     pull(country)
 
   
-  
   unique <- co2_data %>%
     filter(year == "2000")
   dates <- co2_data %>%
     filter(country == "China")
   
   shiny_server <- function(input, output) {
-    
-    output$range <- renderPrint({input$slider1})
     
     lalala <- reactive({co2_data %>%
         filter(country == input$country | country == input$country2) %>%
